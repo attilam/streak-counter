@@ -1,0 +1,17 @@
+{
+  "name": "streak-counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": "https://attilam@github.com/attilam/streak-counter.git",
+  "author": "Attila Malarik <attila.malarik@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^28.1.2",
+    "jest": "^28.1.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
+  }
+}
