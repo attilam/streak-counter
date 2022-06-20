@@ -30,6 +30,10 @@ const streak = streakCounter(localStorage, today);
 // }
 ```
 
+## Demo
+
+[![Edit streak-counter (ts-course) (forked)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/streak-counter-ts-course-forked-6zhyxg?fontsize=14&hidenavigation=1&theme=dark)
+
 ## Course Notes
 
 via https://www.typescriptcourse.com/
