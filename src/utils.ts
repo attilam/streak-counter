@@ -1,3 +1,21 @@
+import { Streak } from ".";
+
 export function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US');
+}
+
+export function buildStreak(
+  date: Date,
+  overrideDefaults?: Partial<Streak>
+): Streak {
+  const defaultStreak = {
+    currentCount: 1,
+    startDate: formatDate(date),
+    lastLoginDate: formatDate(date)
+  };
+
+  return {
+    ...defaultStreak,
+    ...overrideDefaults
+  };
 }
