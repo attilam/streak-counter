@@ -1,5 +1,7 @@
 import { Streak } from ".";
 
+export const KEY = 'streak';
+
 export function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US');
 }
@@ -18,4 +20,8 @@ export function buildStreak(
     ...defaultStreak,
     ...overrideDefaults
   };
+}
+
+export function updateStreak(storage: Storage, streak: Streak): void {
+  storage.setItem(KEY, JSON.stringify(streak));
 }

@@ -1,18 +1,33 @@
 {
-  "name": "streak-counter",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
+  "name": "@attilam/streak-counter",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/attilam/streak-counter"
   },
-  "repository": "https://attilam@github.com/attilam/streak-counter.git",
   "author": "Attila Malarik <attila.malarik@gmail.com>",
   "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
   "devDependencies": {
     "@types/jest": "^28.1.2",
     "@types/jsdom": "^16.2.14",
     "jest": "^28.1.1",
     "jsdom": "^19.0.0",
+    "microbundle": "^0.15.0",
     "ts-jest": "^28.0.5",
     "typescript": "^4.7.4"
   }

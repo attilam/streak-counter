@@ -1,12 +1,10 @@
-import { formatDate } from './utils';
+import { buildStreak, formatDate, KEY, updateStreak } from './utils';
 
 export interface Streak {
   currentCount: number;
   startDate: string;
   lastLoginDate: string;
 }
-
-const KEY = 'streak';
 
 function shouldIncrementOrResetStreakCount(
   currentDate: Date,
@@ -30,31 +28,26 @@ export function streakCounter(storage: Storage, date: Date): Streak {
 
   if (streakInLocalStorage) {
     try {
-      const streak = JSON.parse(streakInLocalStorage);
+      const streak = JSON.parse(streakInLocalStorage) as Streak;
       const state = shouldIncrementOrResetStreakCount(date, streak.lastLoginDate);
       const SHOULD_INCREMENT = state === 'increment';
       const SHOULD_RESET = state === 'reset';
 
       if (SHOULD_INCREMENT) {
-        const updatedStreak = {
-          ...streak,
+        const updatedStreak = buildStreak(date, {
           currentCount: streak.currentCount + 1,
-          lastLoginDate: formatDate(date)
-        };
+          startDate: streak.startDate
+        });
 
-        storage.setItem(KEY, JSON.stringify(updatedStreak));
+        updateStreak(storage, updatedStreak);
 
         return updatedStreak;
       }
 
       if (SHOULD_RESET) {
-        const updatedStreak = {
-          currentCount: 1,
-          startDate: formatDate(date),
-          lastLoginDate: formatDate(date)
-        };
+        const updatedStreak = buildStreak(date);
 
-        storage.setItem(KEY, JSON.stringify(updatedStreak));
+        updateStreak(storage, updatedStreak);
 
         return updatedStreak;
       }
@@ -65,11 +58,7 @@ export function streakCounter(storage: Storage, date: Date): Streak {
     }
   }
 
-  const streak = {
-    currentCount: 1,
-    startDate: formatDate(date),
-    lastLoginDate: formatDate(date)
-  };
+  const streak = buildStreak(date);
 
   storage.setItem(KEY, JSON.stringify(streak));
 
